@@ -1,0 +1,7 @@
+#build output files
+*.bin
+*.elf
+*.map
+*.hex
+
+.DS_Store
