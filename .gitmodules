@@ -1,0 +1,3 @@
+[submodule "firmware-syntiant-tinyml"]
+	path = firmware-syntiant-tinyml
+	url = git@github.com:edgeimpulse/firmware-syntiant-tinyml.git
