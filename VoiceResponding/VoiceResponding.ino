@@ -35,15 +35,32 @@
 void on_classification_changed(const char *event, float confidence, float anomaly_score) {
 
     // here you can write application code, e.g. to toggle LEDs based on keywords
-    if (strcmp(event, "stop") == 0) {
+    if (strcmp(event, "turn_on_red") == 0) {
         // Toggle LED
         digitalWrite(LED_RED, HIGH);
+        digitalWrite(LED_BLUE, LOW);
+        digitalWrite(LED_GREEN, LOW);
     }
 
-    if (strcmp(event, "go") == 0) {
+    if (strcmp(event, "turn_on_green") == 0) {
         // Toggle LED
+        digitalWrite(LED_GREEN, HIGH);
+        digitalWrite(LED_BLUE, LOW);
         digitalWrite(LED_RED, LOW);
+    }
+
+    if (strcmp(event, "turn_on_blue") == 0) {
+        // Toggle LED
         digitalWrite(LED_BLUE, HIGH);
+        digitalWrite(LED_GREEN, LOW);
+        digitalWrite(LED_RED, LOW);
+    }
+
+    if (strcmp(event, "turn_off") == 0) {
+        // Toggle LED
+        digitalWrite(LED_BLUE, LOW);
+        digitalWrite(LED_GREEN, LOW);
+        digitalWrite(LED_RED, LOW);
     }
 }
 

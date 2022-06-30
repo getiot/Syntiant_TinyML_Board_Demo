@@ -19,23 +19,34 @@
  * SOFTWARE.
  */
 
-#ifndef _EI_CLASSIFIER_DSP_BLOCKS_H_
-#define _EI_CLASSIFIER_DSP_BLOCKS_H_
+#ifndef _EI_CLASSIFIER_MODEL_VARIABLES_H_
+#define _EI_CLASSIFIER_MODEL_VARIABLES_H_
 
-#include "model-parameters/model_metadata.h"
-#include "model-parameters/model_variables.h"
-#include "edge-impulse-sdk/classifier/ei_run_dsp.h"
+#include <stdint.h>
+#include "model_metadata.h"
 #include "edge-impulse-sdk/classifier/ei_model_types.h"
 
-const size_t ei_dsp_blocks_size = 1;
-ei_model_dsp_t ei_dsp_blocks[ei_dsp_blocks_size] = {
-    { // DSP block 25
-        1600,
-        &extract_audio_syntiant_features,
-        (void*)&ei_dsp_config_25,
-        ei_dsp_config_25_axes,
-        ei_dsp_config_25_axes_size
-    }
+const char* ei_classifier_inferencing_categories[] = { "turn_off", "turn_on_blue", "turn_on_green", "turn_on_red" };
+
+uint8_t ei_dsp_config_25_axes[] = { 0 };
+const uint32_t ei_dsp_config_25_axes_size = 1;
+ei_dsp_config_audio_syntiant_t ei_dsp_config_25 = {
+    1,
+    1,
+    0.032f,
+    0.024f,
+    40,
+    512,
+    0,
+    0,
+    0.96875f
+};
+const ei_model_performance_calibration_t ei_calibration = {
+    1, /* integer version number */
+    (int32_t)(EI_CLASSIFIER_RAW_SAMPLE_COUNT / ((EI_CLASSIFIER_FREQUENCY > 0) ? EI_CLASSIFIER_FREQUENCY : 1)) * 1000, /* Model window */
+    0.8f, /* Default threshold */
+    (int32_t)(EI_CLASSIFIER_RAW_SAMPLE_COUNT / ((EI_CLASSIFIER_FREQUENCY > 0) ? EI_CLASSIFIER_FREQUENCY : 1)) * 500, /* Half of model window */
+    0   /* Don't use flags */
 };
 
-#endif // _EI_CLASSIFIER_DSP_BLOCKS_H_
+#endif // _EI_CLASSIFIER_MODEL_METADATA_H_
